@@ -1,4 +1,4 @@
-![Generator Nexus Logo](nexus-logo.png)
+![Nexus Logo](nexus.png)
 
 # generator-nexus [![Build Status](https://travis-ci.org/trevordmiller/generator-nexus.svg?branch=master)](https://travis-ci.org/trevordmiller/generator-nexus)
 
