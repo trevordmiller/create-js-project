@@ -20,13 +20,15 @@ describe('App project type with default options', () => {
     helpers.run(path.join(__dirname, '../../../generators/app'))
       .withOptions({ skipInstall: true })
       .withPrompts({
-        projectType: 'app',
+        projectType: 'web-app-react',
         projectName: 'object-assign-polyfill',
         projectDescription: 'Object.assign() polyfill',
         authorInfo: 'Sarah Collings <sarahcollings@gmail.com> (www.sarahcollings.com)',
         githubUsername: 'sarahcollings',
-        githubRepo: 'object-assign-polyfill'
-        // default options for everything else
+        editorconfig: true,
+        linting: true,
+        testing: true,
+        continuousIntegration: true
       })
       .on('end', done);
   });

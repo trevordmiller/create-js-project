@@ -8,13 +8,14 @@
 
 ---
 
-<%if (projectType === 'app') { %>
+<%if (projectType === 'web-app-react') { %>
 ## Getting Started
 
 1. Clone the project
 1. `npm install`
+1. `npm run dev`
 <% } %>
-<%if (projectType === 'package') { %>
+<%if (projectType === 'npm-package-js') { %>
 ## Install
 
 `$ npm install <%= projectName %> --save`
@@ -37,12 +38,15 @@
 
 ## Contributing
 
-Contributions are welcome! Just follow these steps:
+Contributions are welcome!
 
 1. Clone
 1. `npm install`
 1. `npm run dev`
 1. Follow code style in project
+<%if (testing) { %>
+1. Ensure test coverage for any changed functionality
+<% } %>
 1. Submit a pull request
 
 ---

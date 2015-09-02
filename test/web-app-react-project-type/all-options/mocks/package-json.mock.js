@@ -13,7 +13,7 @@ export default
   ],
   "main": "dist/bundle.js",
   "scripts": {
-    "lint": "eslint src<%if (projectType === 'app') { %> webpack.config.js<% } %>",
+    "lint": "eslint src webpack.config.js",
     "test": "mocha src/**/*.test.js --compilers js:babel/register",
     "test:watch": "npm test -- -w",
     "build": "webpack",

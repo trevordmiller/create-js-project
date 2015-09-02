@@ -10,29 +10,29 @@
   "license": "MIT",
   "keywords": [
   ],
-  <%if (projectType === 'package') { %>
+  <%if (projectType === 'npm-package-js') { %>
   "main": "dist/index.js",
   <% } %>
-  <%if (projectType === 'app') { %>
+  <%if (projectType === 'web-app-react') { %>
   "main": "dist/bundle.js",
   <% } %>
   "scripts": {
     <%if (linting) { %>
-    "lint": "eslint src<%if (projectType === 'app') { %> webpack.config.js<% } %>",
+    "lint": "eslint src<%if (projectType === 'web-app-react') { %> webpack.config.js<% } %>",
     <% } %>
     <%if (testing) { %>
     "test": "mocha src/**/*.test.js --compilers js:babel/register",
     "test:watch": "npm test -- -w",
     <% } %>
-    <%if (projectType === 'package') { %>
+    <%if (projectType === 'npm-package-js') { %>
     "build": "babel src/index.js -o dist/index.js -s",
     "dev": "npm run build -- -w",
     <% } %>
-    <%if (projectType === 'app') { %>
+    <%if (projectType === 'web-app-react') { %>
     "build": "webpack",
     "dev": "webpack-dev-server",
     <% } %>
-    "prepublish": "npm build"
+    "prepublish": "<%if (linting && testing) { %>npm run lint && npm test && <% } %><%if (linting && !testing) { %>npm run lint && <% } %><%if (testing && !linting) { %>npm run test && <% } %>npm run build"
   },
   <%if (linting || testing) { %>
   "pre-commit": [
@@ -60,7 +60,7 @@
     <%if (linting) { %>
     "eslint": "1.x.x",
     <% } %>
-    <%if (projectType === 'app') { %>
+    <%if (projectType === 'web-app-react') { %>
     "eslint-plugin-react": "3.x.x",
     "babel-core": "5.x.x",
     "babel-loader": "5.x.x",

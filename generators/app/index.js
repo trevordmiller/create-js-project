@@ -3,20 +3,18 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var mkdirp = require('mkdirp');
-// var beautify = require('gulp-beautify');
-// var gulpFilter = require('gulp-filter');
 
 module.exports = yeoman.generators.Base.extend({
 
   prompting: function () {
     var done = this.async();
 
-    this.log(chalk.cyan('                                         '));
-    this.log(chalk.cyan('-----------------------------------------'));
-    this.log(chalk.cyan('                  NEXUS                  '));
-    this.log(chalk.cyan('  A starter kit for modern JS projects   '));
-    this.log(chalk.cyan('-----------------------------------------'));
-    this.log(chalk.cyan('                                         '));
+    this.log(chalk.cyan('                                                  '));
+    this.log(chalk.cyan('--------------------------------------------------'));
+    this.log(chalk.cyan('                      NEXUS                       '));
+    this.log(chalk.cyan('  A generator for scaffolding modern JS projects  '));
+    this.log(chalk.cyan('--------------------------------------------------'));
+    this.log(chalk.cyan('                                                  '));
 
     var prompts = [
       {
@@ -25,12 +23,12 @@ module.exports = yeoman.generators.Base.extend({
         message: 'Type of project',
         choices: [
           {
-            name: 'JS package (npm)',
-            value: 'package'
+            name: 'npm package (vanilla JS)',
+            value: 'npm-package-js'
           },
           {
             name: 'web app (React)',
-            value: 'app'
+            value: 'web-app-react'
           }
         ]
       },
@@ -64,25 +62,25 @@ module.exports = yeoman.generators.Base.extend({
         type: 'confirm',
         name: 'editorconfig',
         message: 'Add editor config (EditorConfig)',
-        default: true
+        default: false
       },
       {
         type: 'confirm',
         name: 'linting',
         message: 'Add linting (ESLint)',
-        default: true
+        default: false
       },
       {
         type: 'confirm',
         name: 'testing',
         message: 'Add testing (Mocha)',
-        default: true
+        default: false
       },
       {
         type: 'confirm',
         name: 'continuousIntegration',
         message: 'Add Continuous Integration (Travis CI)',
-        default: true
+        default: false
       }
     ];
 
@@ -108,17 +106,6 @@ module.exports = yeoman.generators.Base.extend({
 
     files: function () {
 
-      // See "Transform output files through streams"
-      // http://yeoman.io/authoring/file-system.html
-      // var beautifyFilter = gulpFilter([
-      //   '_package.json'
-      // ]);
-      // this.registerTransformStream(beautifyFilter(beautify({
-      //   indentSize: 2,
-      //   indentChar : ' ',
-      //   preserveNewlines : false
-      // })));
-
       // CORE
 
       mkdirp('src');
@@ -141,7 +128,7 @@ module.exports = yeoman.generators.Base.extend({
 
       // PACKAGE
 
-      if(this.context.projectType === 'package') {
+      if(this.context.projectType === 'npm-package-js') {
         this.copy('_index.js', 'src/index.js');
 
         if(this.context.testing) {
@@ -151,7 +138,7 @@ module.exports = yeoman.generators.Base.extend({
 
       // APP
 
-      if(this.context.projectType === 'app') {
+      if(this.context.projectType === 'web-app-react') {
         this.copy('_Example.js', 'src/components/Example/Example.js');
 
         if(this.context.testing) {

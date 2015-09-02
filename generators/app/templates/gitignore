@@ -1,4 +1,4 @@
 .DS_Store
 npm-debug.log
 node_modules/
-<%if (projectType === 'app') { %>dist/<% } -%>
+<%if (projectType === 'web-app-react') { %>dist/<% } -%>
