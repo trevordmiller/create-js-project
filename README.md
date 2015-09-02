@@ -1,6 +1,6 @@
 ![Generator Nexus Logo](nexus-logo.png)
 
-# generator-nexus [![Build Status](https://secure.travis-ci.org/trevordmiller/generator-nexus.png?branch=master)](https://travis-ci.org/trevordmiller/generator-nexus)
+# generator-nexus [![Build Status](https://travis-ci.org/trevordmiller/generator-nexus.svg?branch=master)](https://travis-ci.org/trevordmiller/generator-nexus)
 
 _A generator for scaffolding modern JS projects_
 
