@@ -1,0 +1,51 @@
+{
+  "name": "generator-nexus",
+  "version": "1.0.0-alpha",
+  "description": "A starter kit for modern JS projects",
+  "license": "MIT",
+  "main": "generators/app/index.js",
+  "repository": "trevordmiller/generator-nexus",
+  "author": {
+    "name": "Trevor D. Miller",
+    "email": "trevordmiller@icloud.com",
+    "url": "http://trevordmiller.com"
+  },
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
+  "scripts": {
+    "lint": "eslint test generators",
+    "test": "mocha ./test/**/*.test.js --recursive --compilers js:babel/register",
+    "test:watch": "npm run test -- -w",
+    "dev": "npm run test:watch",
+    "prepublish": "npm run lint && npm run test"
+  },
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator",
+    "modern javascript",
+    "javascript",
+    "npm package",
+    "react app",
+    "boilerplate",
+    "starter kit"
+  ],
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "gulp-beautify": "^1.1.2",
+    "gulp-filter": "^3.0.1",
+    "mkdirp": "^0.5.1",
+    "yeoman-generator": "^0.20.3",
+    "yosay": "^1.0.2"
+  },
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "eslint": "^1.2.1",
+    "eslint-plugin-react": "^3.2.3",
+    "mocha": "^2.2.5",
+    "pre-commit": "^1.1.1"
+  }
+}

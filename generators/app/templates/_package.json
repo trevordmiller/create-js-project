@@ -1,0 +1,75 @@
+{
+  "name": "<%= projectName %>",
+  "version": "1.0.0",
+  "description": "<%= projectDescription %>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/<%= githubUsername %>/<%= projectName %>.git"
+  },
+  "author": "<%- authorInfo %>",
+  "license": "MIT",
+  "keywords": [
+  ],
+  <%if (projectType === 'package') { %>
+  "main": "dist/index.js",
+  <% } %>
+  <%if (projectType === 'app') { %>
+  "main": "dist/bundle.js",
+  <% } %>
+  "scripts": {
+    <%if (linting) { %>
+    "lint": "eslint src<%if (projectType === 'app') { %> webpack.config.js<% } %>",
+    <% } %>
+    <%if (testing) { %>
+    "test": "mocha src/**/*.test.js --compilers js:babel/register",
+    "test:watch": "npm test -- -w",
+    <% } %>
+    <%if (projectType === 'package') { %>
+    "build": "babel src/index.js -o dist/index.js -s",
+    "dev": "npm run build -- -w",
+    <% } %>
+    <%if (projectType === 'app') { %>
+    "build": "webpack",
+    "dev": "webpack-dev-server",
+    <% } %>
+    "prepublish": "npm build"
+  },
+  <%if (linting || testing) { %>
+  "pre-commit": [
+    <%if (linting && testing) { %>
+    "lint",
+    "test"
+    <% } %>
+    <%if (linting && !testing) { %>
+    "lint"
+    <% } %>
+    <%if (testing && !linting) { %>
+    "test"
+    <% } %>
+  ],
+  <% } %>
+  "dependencies": {
+  },
+  "devDependencies": {
+    <%if (linting || testing) { %>
+    "pre-commit": "1.x.x",
+    <% } %>
+    <%if (testing) { %>
+    "mocha": "2.x.x",
+    <% } %>
+    <%if (linting) { %>
+    "eslint": "1.x.x",
+    <% } %>
+    <%if (projectType === 'app') { %>
+    "eslint-plugin-react": "3.x.x",
+    "babel-core": "5.x.x",
+    "babel-loader": "5.x.x",
+    "react": "0.13.x",
+    "react-hot-loader": "1.x.x",
+    "file-loader": "0.8.x",
+    "webpack": "1.x.x",
+    "webpack-dev-server": "1.x.x",
+    <% } %>
+    "babel": "5.x.x"
+  }
+}
