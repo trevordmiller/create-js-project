@@ -9,12 +9,12 @@ module.exports = yeoman.generators.Base.extend({
   prompting: function () {
     var done = this.async();
 
-    this.log(chalk.cyan('                                                  '));
-    this.log(chalk.cyan('--------------------------------------------------'));
-    this.log(chalk.cyan('                      NEXUS                       '));
-    this.log(chalk.cyan('  A generator for scaffolding modern JS projects  '));
-    this.log(chalk.cyan('--------------------------------------------------'));
-    this.log(chalk.cyan('                                                  '));
+    this.log(chalk.cyan('                               '));
+    this.log(chalk.cyan('-------------------------------'));
+    this.log(chalk.cyan('             NEXUS             '));
+    this.log(chalk.cyan('  Scaffold modern JS projects  '));
+    this.log(chalk.cyan('-------------------------------'));
+    this.log(chalk.cyan('                               '));
 
     var prompts = [
       {

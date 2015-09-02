@@ -1,7 +1,7 @@
 {
   "name": "generator-nexus",
   "version": "1.0.0-alpha",
-  "description": "A starter kit for modern JS projects",
+  "description": "Scaffold modern JS projects",
   "license": "MIT",
   "main": "generators/app/index.js",
   "repository": "trevordmiller/generator-nexus",

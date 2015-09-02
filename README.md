@@ -2,7 +2,11 @@
 
 # generator-nexus [![Build Status](https://travis-ci.org/trevordmiller/generator-nexus.svg?branch=master)](https://travis-ci.org/trevordmiller/generator-nexus)
 
-_A generator for scaffolding modern JS projects_
+_Scaffold modern JS projects_
+
+---
+
+## About
 
 _Nexus_ is a [Yeoman](http://yeoman.io) generator for scaffolding modern JS projects. This includes everything from a simple vanilla JS npm package to a complex React web app with linting, testing, continuous integration and other options. Although each project is different, a lot of tooling overlaps, so _Nexus_ has a consistent _Core_ which can be customized and extended by your choices to the generator prompts. After you make your choices, _Nexus_ lays down cutting-edge best practices and boilerplate setup in seconds so that you can focus on the unique parts of your project.
 
@@ -26,9 +30,9 @@ _Nexus_ has been built in a modular way so that as the industry moves to new tec
 When a project is generated with _Nexus_, it automatically gets the _Core_ set of of files and folders, which are customized based on your answers to the generator prompts:
 
 - `src/`
-  - Boilerplate code wire up
+  - Boilerplate code
 - `dist/`
-  - Public code _(automatically built from `src/` directory)_
+  - Public code, automatically built from `src/` directory code ^
 - `.gitignore`
 - `package.json`
 - `README.md`
@@ -37,47 +41,49 @@ When a project is generated with _Nexus_, it automatically gets the _Core_ set o
 
 When you run _Nexus_, it will prompt you with other options that you can extend the _Core_ with, if you want:
 
-##### Editor config (EditorConfig)
+##### Editor formatting (EditorConfig)
 
 - Adds an `.editorconfig` file to the root of your project
 
-##### Linting config (ESLint)
+##### Linting (ESLint)
 
 - Adds npm scripts for linting, specific to the project type you select
 - Adds recommended eslint rules for all JS projects
 - Adds React/JSX specific linting rules if React project type is selected
 - Adds linting dependencies and configuration to your `package.json`
 
-##### Testing config (Mocha)
+##### Testing (Mocha)
 
 - Adds npm scripts for testing, specific to the project type you select
 - Adds an example test file for the default code generated, based on the project type you select
 - Adds testing dependencies and configuration to your `package.json`
 
-##### Continuous Integration config (Travis CI)
+##### Continuous Integration (Travis CI)
 
 - Adds a `.travis.yml` file to the root of your project
 - Adds a Travis CI badge to the top of your `README.md` based on your answers to the generator prompts
 
-##### React bundling and hot reloading (Webpack) _(only added when choosing web app (React) project type)_
+##### React bundling and hot reloading (Webpack)
+
+_Only added when choosing web app (React) project type_
 
 - Adds a `webpack.config.js` file to the root of your project
 - Adds Webpack dependencies and configuration to your `package.json`
 
 ---
 
-### Roadmap
+## Roadmap
 
 - [x] `v1.0.0` release
 - [ ] Add isomorphic React rendering option _(when `app` option is selected, so that apps can be run for real, not just with `webpack-dev-server`)_
 - [ ] Add isomorphic routing option (flatiron director or react router?) _(when `app` option is selected)_
 - [ ] Add continuous deployment option (Heroku) _(when `app` and `travis ci` options are selected)_
-- [ ] Add styling reset/theme option (React inline styles) _(when `app` option is selected)_
+- [ ] Add styling reset/theme option (React inline styles?) _(when `app` option is selected)_
 - [ ] When Node v4.0.0 is released, update `engine` in `package.json` to `4.0.0`, which will allow use of ES6 in `webpack.config.js`
 
 ---
 
-### Contributing
+## Contributing
 
 Contributions are welcome!
 
@@ -90,6 +96,6 @@ Contributions are welcome!
 
 ---
 
-### License
+## License
 
 MIT
