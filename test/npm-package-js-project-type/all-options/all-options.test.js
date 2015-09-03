@@ -2,6 +2,7 @@
 
 import path from 'path';
 import {assert, test as helpers} from 'yeoman-generator';
+import allOptions from '../../all-options';
 import gitignoreMock from './mocks/gitignore.mock';
 import packageJsonMock from './mocks/package-json.mock';
 import readmeMdMock from './mocks/readme-md.mock';
@@ -14,21 +15,12 @@ import indexTestJsMock from './mocks/index-test-js.mock';
 describe('Package project type with default options', () => {
 
   before(function (done) {
+    allOptions.projectType = 'npm-package-js',
     helpers.run(path.join(__dirname, '../../../generators/app'))
       .withOptions({
         skipInstall: true
       })
-      .withPrompts({
-        projectType: 'npm-package-js',
-        projectName: 'object-assign-polyfill',
-        projectDescription: 'Object.assign() polyfill',
-        authorInfo: 'Sarah Collings <sarahcollings@gmail.com> (www.sarahcollings.com)',
-        githubUsername: 'sarahcollings',
-        editorconfig: true,
-        linting: true,
-        testing: true,
-        continuousIntegration: true
-      })
+      .withPrompts(allOptions)
       .on('end', done);
   });
 

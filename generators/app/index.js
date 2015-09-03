@@ -9,12 +9,12 @@ module.exports = yeoman.generators.Base.extend({
   prompting: function () {
     var done = this.async();
 
-    this.log(chalk.cyan('                               '));
-    this.log(chalk.cyan('-------------------------------'));
-    this.log(chalk.cyan('             NEXUS             '));
-    this.log(chalk.cyan('  Scaffold modern JS projects  '));
-    this.log(chalk.cyan('-------------------------------'));
-    this.log(chalk.cyan('                               '));
+    this.log(chalk.cyan('                                          '));
+    this.log(chalk.cyan('------------------------------------------'));
+    this.log(chalk.cyan('                   NEXUS                  '));
+    this.log(chalk.cyan('  Scaffold modern JS projects in seconds  '));
+    this.log(chalk.cyan('------------------------------------------'));
+    this.log(chalk.cyan('                                          '));
 
     var prompts = [
       {
@@ -91,6 +91,7 @@ module.exports = yeoman.generators.Base.extend({
         projectDescription: props.projectDescription,
         authorInfo: props.authorInfo,
         githubUsername: props.githubUsername,
+        generalExtensions: props.generalExtensions,
         editorconfig: (props.generalExtensions.indexOf('editorconfig') > -1) ? true : false,
         linting: (props.generalExtensions.indexOf('linting') > -1) ? true : false,
         testing: (props.generalExtensions.indexOf('testing') > -1) ? true : false,
@@ -107,8 +108,6 @@ module.exports = yeoman.generators.Base.extend({
 
       // CORE
 
-      console.log(this.context);
-
       mkdirp('src');
       mkdirp('dist');
       this.template('gitignore', '.gitignore', this.context);
@@ -124,7 +123,7 @@ module.exports = yeoman.generators.Base.extend({
       }
 
       if(this.context.continuousIntegration) {
-        this.copy('travis.yml', '.travis.yml');
+        this.template('travis.yml', '.travis.yml', this.context);
       }
 
       // PACKAGE
@@ -156,4 +155,4 @@ module.exports = yeoman.generators.Base.extend({
   install: function () {
     this.npmInstall();
   }
-})
+});

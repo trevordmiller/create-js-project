@@ -1,7 +1,7 @@
 {
   "name": "generator-nexus",
   "version": "1.0.0-alpha",
-  "description": "Scaffold modern JS projects",
+  "description": "Scaffold modern JS projects in seconds",
   "license": "MIT",
   "main": "generators/app/index.js",
   "repository": "trevordmiller/generator-nexus",
@@ -18,7 +18,8 @@
     "lint": "eslint test generators",
     "test": "mocha ./test/**/*.test.js --recursive --compilers js:babel/register",
     "test:watch": "npm run test -- -w",
-    "dev": "npm run test:watch"
+    "dev": "npm run test:watch",
+    "prepublish": "npm run lint && npm run test"
   },
   "files": [
     "generators"

@@ -1,14 +1,14 @@
-![Nexus Logo](nexus.png)
+![Nexus Logo](logo.png)
 
 # generator-nexus [![Build Status](https://travis-ci.org/trevordmiller/generator-nexus.svg?branch=master)](https://travis-ci.org/trevordmiller/generator-nexus)
 
-_Scaffold modern JS projects_
+_Scaffold modern JS projects in seconds_
 
 ---
 
 ## About
 
-_Nexus_ is a [Yeoman](http://yeoman.io) generator for scaffolding modern JS projects. This includes everything from a simple vanilla JS npm package to a complex React web app. Although each project is different, a lot of tooling overlaps, so _Nexus_ has a consistent _Core_ which can be customized and extended by your choices to the generator prompts. Based on your choices, _Nexus_ lays down cutting-edge best practices and boilerplate setup in seconds so that you can focus on the unique parts of your project.
+_Nexus_ is a [Yeoman](http://yeoman.io) generator for scaffolding modern JS projects in seconds. This includes everything from a simple vanilla JS npm package to a complex React web app. Although each project is different, a lot of tooling overlaps: _Nexus_ has a consistent _Core_ which can be customized and extended; based on your choices, _Nexus_ lays down cutting-edge best practices and boilerplate setup in seconds so that you can focus on the unique and fun parts of your project.
 
 _Nexus_ has been built in a modular way so that as the industry moves to new technology choices, the generator options will be updated to match.
 
@@ -30,6 +30,7 @@ _Nexus_ has been built in a modular way so that as the industry moves to new tec
 When you first run `yo nexus`, _Nexus_ asks you to pick your project type:
 
 - npm package (vanilla JS)
+- npm package (React) _(coming soon)_
 - web app (React)
 
 ### General Info
@@ -102,10 +103,12 @@ _Required selections: Travis CI, Isomorphic Rendering_
 ## Roadmap
 
 - [x] `v1.0.0` release
+- [ ] Project Type: `npm package (React)` option _(for building stand-alone React components to be published and shared, not as part of an app)_
+- [ ] React Extension: Flux option (Redux + Redux Dev Tools)
 - [ ] React Extension: isomorphic rendering option (Node server)
 - [ ] React Extension: isomorphic routing option (flatiron director)
-- [ ] React Extension: styling option (React inline styles)
 - [ ] React Extension: continuous deployment option (Heroku)
+- [ ] React Extension: styling option (React inline styles)
 - [ ] After Node v4.0.0 is released, update `engine` in `package.json` to `4.0.0`, which will allow use of ES6 in `webpack.config.js`
 
 ---
