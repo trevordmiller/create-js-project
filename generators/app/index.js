@@ -20,7 +20,7 @@ module.exports = yeoman.generators.Base.extend({
       {
         type: 'list',
         name: 'projectType',
-        message: 'Type of project',
+        message: 'Project type',
         choices: [
           {
             name: 'npm package (vanilla JS)',
@@ -59,28 +59,27 @@ module.exports = yeoman.generators.Base.extend({
         store: true
       },
       {
-        type: 'confirm',
-        name: 'editorconfig',
-        message: 'Add editor config (EditorConfig)',
-        default: false
-      },
-      {
-        type: 'confirm',
-        name: 'linting',
-        message: 'Add linting (ESLint)',
-        default: false
-      },
-      {
-        type: 'confirm',
-        name: 'testing',
-        message: 'Add testing (Mocha)',
-        default: false
-      },
-      {
-        type: 'confirm',
-        name: 'continuousIntegration',
-        message: 'Add Continuous Integration (Travis CI)',
-        default: false
+        type: 'checkbox',
+        name: 'generalExtensions',
+        message: 'General Extensions',
+        choices: [
+          {
+            name: 'Add editor config (EditorConfig)',
+            value: 'editorconfig'
+          },
+          {
+            name: 'Add linting (ESLint)',
+            value: 'linting'
+          },
+          {
+            name: 'Add testing (Mocha)',
+            value: 'testing'
+          },
+          {
+            name: 'Add Continuous Integration (Travis CI)',
+            value: 'continuousIntegration'
+          }
+        ]
       }
     ];
 
@@ -92,10 +91,10 @@ module.exports = yeoman.generators.Base.extend({
         projectDescription: props.projectDescription,
         authorInfo: props.authorInfo,
         githubUsername: props.githubUsername,
-        editorconfig: props.editorconfig,
-        linting: props.linting,
-        testing: props.testing,
-        continuousIntegration: props.continuousIntegration
+        editorconfig: (props.generalExtensions.indexOf('editorconfig') > -1) ? true : false,
+        linting: (props.generalExtensions.indexOf('linting') > -1) ? true : false,
+        testing: (props.generalExtensions.indexOf('testing') > -1) ? true : false,
+        continuousIntegration: (props.generalExtensions.indexOf('continuousIntegration') > -1) ? true : false
       };
 
       done();
@@ -107,6 +106,8 @@ module.exports = yeoman.generators.Base.extend({
     files: function () {
 
       // CORE
+
+      console.log(this.context);
 
       mkdirp('src');
       mkdirp('dist');
@@ -155,4 +156,4 @@ module.exports = yeoman.generators.Base.extend({
   install: function () {
     this.npmInstall();
   }
-});
+})
