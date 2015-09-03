@@ -18,8 +18,7 @@
     "lint": "eslint test generators",
     "test": "mocha ./test/**/*.test.js --recursive --compilers js:babel/register",
     "test:watch": "npm run test -- -w",
-    "dev": "npm run test:watch",
-    "prepublish": "npm run lint && npm run test"
+    "dev": "npm run test:watch"
   },
   "files": [
     "generators"
