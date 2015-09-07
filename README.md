@@ -8,7 +8,7 @@ _Scaffold modern JS projects in seconds_
 
 ## About
 
-_Nexus_ is a [Yeoman](http://yeoman.io) generator for scaffolding modern JS projects in seconds. This includes everything from a simple vanilla JS npm package to a complex React web app. Although each project is different, a lot of tooling overlaps: _Nexus_ has a consistent _Core_ which can be customized and extended; based on your choices, _Nexus_ lays down cutting-edge best practices and boilerplate setup in seconds so that you can focus on the unique and fun parts of your project.
+_Nexus_ is a [Yeoman](http://yeoman.io) generator for scaffolding modern JS projects in seconds (like npm packages and React web apps). When you run _Nexus_, it will ask you a few questions about your project; then, based on your choices, it lays down cutting-edge best practices and boilerplate setup in seconds so that you can focus on the unique and fun parts of your project.
 
 _Nexus_ has been built in a modular way so that as the industry moves to new technology choices, the generator options will be updated to match.
 
@@ -29,17 +29,17 @@ _Nexus_ has been built in a modular way so that as the industry moves to new tec
 
 When you first run `yo nexus`, _Nexus_ asks you to pick your project type:
 
-- npm package (vanilla JS)
-- npm package (React) _(coming soon)_
-- web app (React)
+- JS module _(stand-alone npm package)_
+- React component _(stand-alone npm package)_
+- React web app
 
 ### General Info
 
-_Nexus_ will ask for general info like your project name, project description, etc.
+Next, _Nexus_ ask for general info like your project name, project description, etc.
 
-### Core
+### Base
 
-_Nexus_ prepares a _Core_ set of of files and folders which will be customized based on the rest of your choices:
+Then, _Nexus_ prepares a base set of files and folders which will be customized based on your choices:
 
 - `src/`
   - Boilerplate code
@@ -48,11 +48,20 @@ _Nexus_ prepares a _Core_ set of of files and folders which will be customized b
 - `.gitignore`
 - `package.json`
 - `README.md`
-- `webpack.config.js` _(only added for React project types)_
+
+_(only added for React project types)_
+
+- `webpack.config.js`
+
+_(only added for React web app project types)_
+
+- `.babelrc`
+- `server.js`
+- `index.html`
 
 ### General Extensions
 
-After you select your project type and complete the general info questions, _Nexus_ asks if you want to extend the _Core_ with some general tools:
+After you select your project type and complete the general info questions, _Nexus_ asks if you want to extend the base setup with some general tools:
 
 ##### Editor formatting (EditorConfig)
 
@@ -68,7 +77,7 @@ After you select your project type and complete the general info questions, _Nex
 ##### Testing (Mocha)
 
 - Adds npm scripts for testing, specific to the project type you selected
-- Adds an example test file for the default code generated, based on the project type you select
+- Adds an example test file for the default code generated in `src`, based on the project type you select
 - Adds testing dependencies and configuration to your `package.json`
 
 ##### Continuous Integration (Travis CI)
@@ -76,13 +85,19 @@ After you select your project type and complete the general info questions, _Nex
 - Adds a `.travis.yml` file to the root of your project
 - Adds a Travis CI badge to the top of your `README.md` based on your answers to the generator prompts
 
-### React Extensions _(coming soon)_
+##### Continuous Deployment (Heroku) _(coming soon)_
 
-If you selected a React project type, _Nexus_ asks if you want to extend the _Core_ and _General Extensions_ with _React Extensions_:
+_Required selections: Travis CI_
+
+- Updates `.travis.yml` file with Heroku information
+
+### React Extensions
+
+If you selected a React project type, _Nexus_ asks if you want to extend the base React project setup with _React Extensions_:
 
 ##### Isomorphic rendering _(coming soon)_
 
-- Sets up a Node server for rendering your app
+- Sets up a Node server for rendering your React code on the server
 
 ##### Isomorphic routing _(coming soon)_
 
@@ -92,24 +107,17 @@ If you selected a React project type, _Nexus_ asks if you want to extend the _Co
 
 - Adds some base style variables and theming using [React's inline styles](https://facebook.github.io/react/tips/inline-styles.html)
 
-##### Continuous Deployment (Heroku) _(coming soon)_
-
-_Required selections: Travis CI, Isomorphic Rendering_
-
-- Updates `.travis.yml` file with Heroku information
-
 ---
 
 ## Roadmap
 
-- [x] `v1.0.0` release
-- [ ] Project Type: `npm package (React)` option _(for building stand-alone React components to be published and shared, not as part of an app)_
+- [ ] `v1.0.0` release
+- [ ] General Extension: continuous deployment option (Heroku)
 - [ ] React Extension: Flux option (Redux + Redux Dev Tools)
 - [ ] React Extension: isomorphic rendering option (Node server)
 - [ ] React Extension: isomorphic routing option (flatiron director)
-- [ ] React Extension: continuous deployment option (Heroku)
 - [ ] React Extension: styling option (React inline styles)
-- [ ] After Node v4.0.0 is released, update `engine` in `package.json` to `4.0.0`, which will allow use of ES6 in `webpack.config.js`
+- [ ] After Node v4.0.0 is released, update `engine` in `package.json` to `4.0.0`, which will allow use of ES6 in `server.js` and `webpack.config.js`
 
 ---
 

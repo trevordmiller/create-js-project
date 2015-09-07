@@ -1,0 +1,11 @@
+<%_if (projectType === 'js-module') { _%>
+export default function() {
+  return 'hello world';
+}
+<%_ } _%>
+<%_if (projectType === 'react-web-app') { _%>
+import React from 'react';
+import Example from './components/Example/Example';
+
+React.render(<Example someProp='hello world' />, document.getElementById('app'));
+<%_ } _%>

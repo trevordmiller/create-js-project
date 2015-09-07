@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - stable
+script:
+  <%_if (linting) { -_%>
+  - npm run lint
+  <%_ } _%>
+  <%_if (testing) { -_%>
+  - npm test
+  <%_ } _%>

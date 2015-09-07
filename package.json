@@ -16,9 +16,9 @@
   ],
   "scripts": {
     "lint": "eslint test generators",
-    "test": "mocha ./test/**/*.test.js --recursive --compilers js:babel/register",
+    "test": "mocha ./generators/**/*.test.js --compilers js:babel/register",
     "test:watch": "npm run test -- -w",
-    "dev": "npm run test:watch",
+    "dev": "npm-run-all -p test:watch",
     "prepublish": "npm run lint && npm run test"
   },
   "files": [
@@ -46,6 +46,7 @@
     "eslint": "^1.2.1",
     "eslint-plugin-react": "^3.2.3",
     "mocha": "^2.2.5",
+    "npm-run-all": "^1.2.8",
     "pre-commit": "^1.1.1"
   }
 }

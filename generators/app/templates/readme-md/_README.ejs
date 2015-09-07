@@ -1,0 +1,56 @@
+# <%= projectName %>
+
+<%_if (continuousIntegration) { _%>
+[![Build Status](https://travis-ci.org/<%= githubUsername %>/<%= projectName %>.svg?branch=master)](https://travis-ci.org/<%= githubUsername %>/<%= projectName %>)
+<%_ } _%>
+
+<%= projectDescription %>
+
+---
+
+<%_if (projectType === 'react-web-app') { _%>
+## Getting Started
+
+1. Clone the project
+1. `npm install`
+1. `npm run dev`
+<%_ } _%>
+<%_if (projectType === 'js-module' || projectType === 'react-component') { _%>
+## Install
+
+`$ npm install <%= projectName %> --save`
+
+---
+
+## Example
+
+```
+...
+```
+
+---
+
+## API
+
+...
+<%_ } _%>
+---
+
+## Contributing
+
+Contributions are welcome!
+
+1. Clone
+1. `npm install`
+1. `npm run dev`
+1. Follow code style in project
+<%_if (testing) { _%>
+1. Ensure test coverage for any changed functionality
+<%_ } _%>
+1. Submit a pull request
+
+---
+
+## License
+
+MIT

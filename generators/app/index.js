@@ -23,12 +23,16 @@ module.exports = yeoman.generators.Base.extend({
         message: 'Project type',
         choices: [
           {
-            name: 'npm package (vanilla JS)',
-            value: 'npm-package-js'
+            name: 'JS module (stand-alone npm package)',
+            value: 'js-module'
           },
           {
-            name: 'web app (React)',
-            value: 'web-app-react'
+            name: 'React component (stand-alone npm package)',
+            value: 'react-component'
+          },
+          {
+            name: 'React web app',
+            value: 'react-web-app'
           }
         ]
       },
@@ -65,7 +69,7 @@ module.exports = yeoman.generators.Base.extend({
         choices: [
           {
             name: 'Add editor config (EditorConfig)',
-            value: 'editorconfig'
+            value: 'editorConfig'
           },
           {
             name: 'Add linting (ESLint)',
@@ -92,7 +96,7 @@ module.exports = yeoman.generators.Base.extend({
         authorInfo: props.authorInfo,
         githubUsername: props.githubUsername,
         generalExtensions: props.generalExtensions,
-        editorconfig: (props.generalExtensions.indexOf('editorconfig') > -1) ? true : false,
+        editorConfig: (props.generalExtensions.indexOf('editorConfig') > -1) ? true : false,
         linting: (props.generalExtensions.indexOf('linting') > -1) ? true : false,
         testing: (props.generalExtensions.indexOf('testing') > -1) ? true : false,
         continuousIntegration: (props.generalExtensions.indexOf('continuousIntegration') > -1) ? true : false
@@ -106,48 +110,74 @@ module.exports = yeoman.generators.Base.extend({
 
     files: function () {
 
-      // CORE
+      var projectType = this.context.projectType,
+        editorConfig = this.context.editorConfig,
+        linting = this.context.linting,
+        testing = this.context.testing,
+        continuousIntegration = this.context.continuousIntegration;
 
-      mkdirp('src');
+      // ----------------------------
+      // BASE
+      // ----------------------------
+
+      // SRC & DIST FOLDERS
+
       mkdirp('dist');
-      this.template('gitignore', '.gitignore', this.context);
-      this.template('_package.json', 'package.json', this.context);
-      this.template('_README.md', 'README.md', this.context);
+      mkdirp('src');
 
-      if(this.context.editorconfig) {
-        this.copy('editorconfig', '.editorconfig');
+      if(projectType === 'js-module' || projectType === 'react-web-app') {
+        this.template('src/index-js/_index.ejs', 'src/index.js', this.context);
       }
 
-      if(this.context.linting) {
-        this.template('eslintrc', '.eslintrc', this.context);
+      if(projectType === 'react-component') {
+        this.copy('src/Example-js/_Example.ejs', 'src/Example/Example.js');
       }
 
-      if(this.context.continuousIntegration) {
-        this.template('travis.yml', '.travis.yml', this.context);
+      if(projectType === 'react-web-app') {
+        this.copy('src/Example-js/_Example.ejs', 'src/components/Example/Example.js');
       }
 
-      // PACKAGE
+      if(testing) {
 
-      if(this.context.projectType === 'npm-package-js') {
-        this.copy('_index.js', 'src/index.js');
+        if(projectType === 'js-module') {
+          this.template('src/index-js-test/_index.test.ejs', 'src/index.test.js', this.context);
+        }
 
-        if(this.context.testing) {
-          this.copy('_index.test.js', 'src/index.test.js');
+        if(projectType === 'react-component') {
+          this.copy('src/Example-test-js/_Example.test.ejs', 'src/Example.test.js');
+        }
+
+        if(projectType === 'react-web-app') {
+          this.copy('src/Example-test-js/_Example.test.ejs', 'src/components/Example/Example.test.js');
         }
       }
 
-      // APP
+      // ROOT FILES
 
-      if(this.context.projectType === 'web-app-react') {
-        this.copy('_Example.js', 'src/components/Example/Example.js');
+      this.template('gitignore/gitignore.ejs', '.gitignore', this.context);
+      this.template('package-json/_package.ejs', 'package.json', this.context);
+      this.template('readme-md/_README.ejs', 'README.md', this.context);
 
-        if(this.context.testing) {
-          this.copy('_Example.test.js', 'src/components/Example/Example.test.js');
-        }
+      if(projectType === 'react-component' || projectType === 'react-web-app') {
+        this.copy('webpack-config-js/_webpack.config.ejs', 'webpack.config.js');
+      }
 
-        this.copy('_Main.js', 'src/Main.js');
-        this.copy('_webpack.config.js', 'webpack.config.js');
-        this.template('_index.html', 'src/index.html', this.context);
+      if(projectType === 'react-web-app') {
+        this.copy('server-js/_server.ejs', 'server.js');
+        this.copy('babelrc/babelrc.ejs', '.babelrc');
+        this.template('index-html/_index.ejs', 'index.html', this.context);
+      }
+
+      if(editorConfig) {
+        this.copy('editorconfig/editorconfig.ejs', '.editorconfig');
+      }
+
+      if(linting) {
+        this.template('eslintrc/eslintrc.ejs', '.eslintrc', this.context);
+      }
+
+      if(continuousIntegration) {
+        this.template('travis-yml/travis.ejs', '.travis.yml', this.context);
       }
     }
   },
