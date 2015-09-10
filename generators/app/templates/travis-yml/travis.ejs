@@ -1,6 +1,7 @@
 language: node_js
 node_js:
   - stable
+<%_if (linting || testing) { _%>
 script:
   <%_if (linting) { _%>
   - npm run lint
@@ -8,3 +9,10 @@ script:
   <%_if (testing) { _%>
   - npm test
   <%_ } _%>
+<%_ } _%>
+<%_if (continuousDeployment) { _%>
+deploy:
+  provider: heroku
+  app: <%= projectName %>
+  api_key: <%= herokuApiKey %>
+<%_ } _%>

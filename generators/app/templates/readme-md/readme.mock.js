@@ -87,7 +87,7 @@ Contributions are welcome!
 MIT
 `;
 
-export const jsModuleContinuousIntegrationMock =
+export const jsModulecontinuousIntegrationMock =
 `# project-name
 
 [![Build Status](https://travis-ci.org/githubusername/project-name.svg?branch=master)](https://travis-ci.org/githubusername/project-name)
@@ -198,7 +198,7 @@ Contributions are welcome!
 MIT
 `;
 
-export const reactWebAppContinuousIntegrationMock =
+export const reactWebAppcontinuousIntegrationMock =
 `# project-name
 
 [![Build Status](https://travis-ci.org/githubusername/project-name.svg?branch=master)](https://travis-ci.org/githubusername/project-name)

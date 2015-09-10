@@ -80,14 +80,14 @@ After you select your project type and complete the general info questions, _Nex
 - Adds an example test file for the default code generated in `src`, based on the project type you select
 - Adds testing dependencies and configuration to your `package.json`
 
-##### Continuous Integration (Travis CI)
+##### Continuous Integration (Travis continuousIntegration)
 
 - Adds a `.travis.yml` file to the root of your project
-- Adds a Travis CI badge to the top of your `README.md` based on your answers to the generator prompts
+- Adds a Travis continuousIntegration badge to the top of your `README.md` based on your answers to the generator prompts
 
 ##### Continuous Deployment (Heroku) _(coming soon)_
 
-_Required selections: Travis CI_
+_Required selections: Travis continuousIntegration_
 
 - Updates `.travis.yml` file with Heroku information
 

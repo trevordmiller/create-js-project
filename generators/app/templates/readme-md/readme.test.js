@@ -1,6 +1,6 @@
 import {assert} from 'yeoman-generator';
 import runTestGenerator from '../../run-test-generator.js';
-import {jsModuleMock, jsModuleTestingMock, jsModuleContinuousIntegrationMock, reactWebAppMock, reactWebAppTestingMock, reactWebAppContinuousIntegrationMock} from './readme.mock';
+import {jsModuleMock, jsModuleTestingMock, jsModulecontinuousIntegrationMock, reactWebAppMock, reactWebAppTestingMock, reactWebAppcontinuousIntegrationMock} from './readme.mock';
 const file = 'README.md';
 
 describe(file, () => {
@@ -52,7 +52,7 @@ describe(file, () => {
     });
 
     it('should have correct file contents', () => {
-      assert.fileContent(file, jsModuleContinuousIntegrationMock);
+      assert.fileContent(file, jsModulecontinuousIntegrationMock);
     });
   });
 
@@ -103,7 +103,7 @@ describe(file, () => {
     });
 
     it('should have correct file contents', () => {
-      assert.fileContent(file, reactWebAppContinuousIntegrationMock);
+      assert.fileContent(file, reactWebAppcontinuousIntegrationMock);
     });
   });
 });

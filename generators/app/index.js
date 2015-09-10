@@ -74,11 +74,11 @@ module.exports = yeoman.generators.Base.extend({
             value: 'testing'
           },
           {
-            name: 'Add Continuous Integration (Travis CI)',
+            name: 'Add Continuous Integration (Travis continuousIntegration)',
             value: 'continuousIntegration'
           },
           {
-            name: 'Add Continuous Deployment (Travis CI + Heroku)',
+            name: 'Add Continuous Deployment (Travis continuousIntegration + Heroku)',
             value: 'continuousDeployment'
           }
         ]
@@ -161,21 +161,21 @@ module.exports = yeoman.generators.Base.extend({
       mkdirp('src');
 
       if(projectType === 'js-module' || projectType === 'react-web-app') {
-        this.template('src/index-js/_index.ejs', 'src/index.js', this.context);
+        this.template('index-js/_index.ejs', 'src/index.js', this.context);
       }
 
       if(projectType === 'react-web-app') {
-        this.template('src/Example-js/_Example.ejs', 'src/components/Example/Example.js', this.context);
+        this.template('Example-js/_Example.ejs', 'src/components/Example/Example.js', this.context);
       }
 
       if(testing) {
 
         if(projectType === 'js-module') {
-          this.template('src/index-test-js/_index.test.ejs', 'src/index.test.js', this.context);
+          this.template('index-test-js/_index.test.ejs', 'src/index.test.js', this.context);
         }
 
         if(projectType === 'react-web-app') {
-          this.template('src/Example-test-js/_Example.test.ejs', 'src/components/Example/Example.test.js', this.context);
+          this.template('Example-test-js/_Example.test.ejs', 'src/components/Example/Example.test.js', this.context);
         }
       }
     }
