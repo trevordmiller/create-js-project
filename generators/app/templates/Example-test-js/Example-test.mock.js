@@ -21,7 +21,7 @@ describe('Example', () => {
     it('should render the correct children', () => {
       const actual = result.props.children;
       const expected = 'hello world';
-      assert.equal(actual, expected);
+      assert.deepEqual(actual, expected);
     });
   });
 });
