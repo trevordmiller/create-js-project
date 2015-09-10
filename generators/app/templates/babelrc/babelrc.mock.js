@@ -1,4 +1,4 @@
-export default
+export const reactWebAppPromptOutput =
 `{
   "stage": 0,
   "plugins": [

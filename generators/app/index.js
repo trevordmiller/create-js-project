@@ -19,8 +19,8 @@ module.exports = yeoman.generators.Base.extend({
     var prompts = [
       {
         type: 'list',
-        name: 'projectType',
         message: 'Project type',
+        name: 'projectType',
         choices: [
           {
             name: 'JS module (stand-alone npm package)',
@@ -38,34 +38,32 @@ module.exports = yeoman.generators.Base.extend({
       },
       {
         type: 'input',
-        name: 'projectName',
         message: 'Project name',
+        name: 'projectName',
         default: 'project-name'
       },
       {
         type: 'input',
-        name: 'projectDescription',
         message: 'Project description',
+        name: 'projectDescription',
         default: 'About the project'
       },
       {
         type: 'input',
-        name: 'authorInfo',
         message: 'Author info',
-        default: 'First Last <email@wherever.com> (www.website.com)',
-        store: true
+        name: 'authorInfo',
+        default: 'First Last <email@wherever.com> (www.website.com)'
       },
       {
         type: 'input',
-        name: 'githubUsername',
         message: 'GitHub username',
-        default: 'githubusername',
-        store: true
+        name: 'githubUsername',
+        default: 'githubusername'
       },
       {
         type: 'checkbox',
+        message: 'Optional: Add General Extensions',
         name: 'generalExtensions',
-        message: 'General Extensions',
         choices: [
           {
             name: 'Add editor config (EditorConfig)',
@@ -82,12 +80,59 @@ module.exports = yeoman.generators.Base.extend({
           {
             name: 'Add Continuous Integration (Travis CI)',
             value: 'continuousIntegration'
+          },
+          {
+            name: 'Add Continuous Deployment (Travis CI + Heroku)',
+            value: 'continuousDeployment'
           }
         ]
+      },
+      {
+        when: function(props) {
+          props.generalExtensions = props.generalExtensions || [];
+          return props.generalExtensions.indexOf('continuousDeployment') > -1;
+        },
+        type: 'input',
+        message: 'Heroku API Key',
+        name: 'herokuApiKey',
+        default: '0123456789'
       }
+      // {
+      //   when: function(props) {
+      //     console.log(props.projectType);
+      //     return (/^react-web-app/).test(props.projectType);
+      //   },
+      //   type: 'checkbox',
+      //   message: 'Optional: Add React Extensions',
+      //   name: 'reactExtensions',
+      //   choices: [
+      //     {
+      //       name: 'COMING SOON, Add Flux architecture setup (Redux + Redux Dev Tools)',
+      //       value: 'redux',
+      //       disabled: true
+      //     },
+      //     {
+      //       name: 'COMING SOON, Add server with isomorphic rendering (Node + Express)',
+      //       value: 'server',
+      //       disabled: true
+      //     },
+      //     {
+      //       name: 'COMING SOON, Add isomorphic routing (Flatiron director)',
+      //       value: 'testing',
+      //       disabled: true
+      //     },
+      //     {
+      //       name: 'COMING SOON, Add style reset and theme (React inline styles)',
+      //       value: 'styles',
+      //       disabled: true
+      //     }
+      //   ]
+      // }
     ];
 
     this.prompt(prompts, function (props) {
+
+      props.generalExtensions = props.generalExtensions || [];
 
       this.context = {
         projectType: props.projectType,
@@ -99,7 +144,9 @@ module.exports = yeoman.generators.Base.extend({
         editorConfig: (props.generalExtensions.indexOf('editorConfig') > -1) ? true : false,
         linting: (props.generalExtensions.indexOf('linting') > -1) ? true : false,
         testing: (props.generalExtensions.indexOf('testing') > -1) ? true : false,
-        continuousIntegration: (props.generalExtensions.indexOf('continuousIntegration') > -1) ? true : false
+        continuousIntegration: (props.generalExtensions.indexOf('continuousIntegration') > -1) ? true : false,
+        continuousDeployment: (props.generalExtensions.indexOf('continuousDeployment') > -1) ? true : false,
+        herokuApiKey: props.herokuApiKey
       };
 
       done();
@@ -114,13 +161,36 @@ module.exports = yeoman.generators.Base.extend({
         editorConfig = this.context.editorConfig,
         linting = this.context.linting,
         testing = this.context.testing,
-        continuousIntegration = this.context.continuousIntegration;
+        continuousIntegration = this.context.continuousIntegration,
+        continuousDeployment = this.context.continuousDeployment;
 
-      // ----------------------------
-      // BASE
-      // ----------------------------
+      // root/
 
-      // SRC & DIST FOLDERS
+      this.template('gitignore/gitignore.ejs', '.gitignore', this.context);
+      this.template('package-json/_package.ejs', 'package.json', this.context);
+      this.template('readme-md/_README.ejs', 'README.md', this.context);
+
+      if(projectType === 'react-web-app') {
+        this.template('webpack-config-js/_webpack.config.ejs', 'webpack.config.js', this.context);
+        this.template('server-js/_server.ejs', 'server.js', this.context);
+        this.template('babelrc/babelrc.ejs', '.babelrc', this.context);
+        this.template('index-html/_index.ejs', 'index.html', this.context);
+      }
+
+      if(editorConfig) {
+        this.template('editorconfig/editorconfig.ejs', '.editorconfig', this.context);
+      }
+
+      if(linting) {
+        this.template('eslintrc/eslintrc.ejs', '.eslintrc', this.context);
+        this.template('eslintignore/eslintignore.ejs', '.eslintignore', this.context);
+      }
+
+      if(continuousIntegration || continuousDeployment) {
+        this.template('travis-yml/travis.ejs', '.travis.yml', this.context);
+      }
+
+      // src/
 
       mkdirp('dist');
       mkdirp('src');
@@ -130,54 +200,26 @@ module.exports = yeoman.generators.Base.extend({
       }
 
       if(projectType === 'react-component') {
-        this.copy('src/Example-js/_Example.ejs', 'src/Example/Example.js');
+        this.template('src/Example-js/_Example.ejs', 'src/index.js', this.context);
       }
 
       if(projectType === 'react-web-app') {
-        this.copy('src/Example-js/_Example.ejs', 'src/components/Example/Example.js');
+        this.template('src/Example-js/_Example.ejs', 'src/components/Example/Example.js', this.context);
       }
 
       if(testing) {
 
         if(projectType === 'js-module') {
-          this.template('src/index-js-test/_index.test.ejs', 'src/index.test.js', this.context);
+          this.template('src/index-test-js/_index.test.ejs', 'src/index.test.js', this.context);
         }
 
         if(projectType === 'react-component') {
-          this.copy('src/Example-test-js/_Example.test.ejs', 'src/Example.test.js');
+          this.template('src/Example-test-js/_Example.test.ejs', 'src/index.test.js', this.context);
         }
 
         if(projectType === 'react-web-app') {
-          this.copy('src/Example-test-js/_Example.test.ejs', 'src/components/Example/Example.test.js');
+          this.template('src/Example-test-js/_Example.test.ejs', 'src/components/Example/Example.test.js', this.context);
         }
-      }
-
-      // ROOT FILES
-
-      this.template('gitignore/gitignore.ejs', '.gitignore', this.context);
-      this.template('package-json/_package.ejs', 'package.json', this.context);
-      this.template('readme-md/_README.ejs', 'README.md', this.context);
-
-      if(projectType === 'react-component' || projectType === 'react-web-app') {
-        this.copy('webpack-config-js/_webpack.config.ejs', 'webpack.config.js');
-      }
-
-      if(projectType === 'react-web-app') {
-        this.copy('server-js/_server.ejs', 'server.js');
-        this.copy('babelrc/babelrc.ejs', '.babelrc');
-        this.template('index-html/_index.ejs', 'index.html', this.context);
-      }
-
-      if(editorConfig) {
-        this.copy('editorconfig/editorconfig.ejs', '.editorconfig');
-      }
-
-      if(linting) {
-        this.template('eslintrc/eslintrc.ejs', '.eslintrc', this.context);
-      }
-
-      if(continuousIntegration) {
-        this.template('travis-yml/travis.ejs', '.travis.yml', this.context);
       }
     }
   },

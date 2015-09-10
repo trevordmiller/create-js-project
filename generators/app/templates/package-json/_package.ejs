@@ -24,7 +24,7 @@
   <%_ } _%>
   "scripts": {
     <%_if (linting) { _%>
-    "lint": "eslint src<%if (projectType === 'react-web-app') { %> webpack.config.js<% } %>",
+    "lint": "eslint .",
     <%_ } _%>
     <%_if (testing) { _%>
     "test": "mocha ./src/**/*.test.js --compilers js:babel/register",

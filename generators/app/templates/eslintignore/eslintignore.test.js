@@ -1,16 +1,16 @@
 import {assert} from 'yeoman-generator';
 import runWithPrompts from '../../run-with-prompts.js';
-import {editorConfigPromptOutput} from './editorconfig.mock';
-const file = '.editorconfig';
+import {lintingPromptOutput} from './eslintignore.mock';
+const file = '.eslintignore';
 
 describe(file, () => {
 
-  describe('Any project type with editorConfig prompt choice', () => {
+  describe('Any project type with linting prompt choice', () => {
 
     runWithPrompts({
       projectType: 'js-module',
       generalExtensions: [
-        'editorConfig'
+        'linting'
       ]
     });
 
@@ -19,7 +19,7 @@ describe(file, () => {
     });
 
     it('should have correct file contents', () => {
-      assert.fileContent(file, editorConfigPromptOutput);
+      assert.fileContent(file, lintingPromptOutput);
     });
   });
 });

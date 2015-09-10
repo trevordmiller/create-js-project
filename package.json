@@ -15,7 +15,7 @@
     "test"
   ],
   "scripts": {
-    "lint": "eslint test generators",
+    "lint": "eslint .",
     "test": "mocha ./generators/**/*.test.js --compilers js:babel/register",
     "test:watch": "npm run test -- -w",
     "dev": "npm-run-all -p test:watch",
