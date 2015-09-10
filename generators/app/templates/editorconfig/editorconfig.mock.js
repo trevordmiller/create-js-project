@@ -1,4 +1,4 @@
-export const editorConfigPromptOutput =
+export const editorConfigMock =
 `root = true
 
 [*]

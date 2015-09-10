@@ -27,10 +27,6 @@ module.exports = yeoman.generators.Base.extend({
             value: 'js-module'
           },
           {
-            name: 'React component (stand-alone npm package)',
-            value: 'react-component'
-          },
-          {
             name: 'React web app',
             value: 'react-web-app'
           }
@@ -97,37 +93,6 @@ module.exports = yeoman.generators.Base.extend({
         name: 'herokuApiKey',
         default: '0123456789'
       }
-      // {
-      //   when: function(props) {
-      //     console.log(props.projectType);
-      //     return (/^react-web-app/).test(props.projectType);
-      //   },
-      //   type: 'checkbox',
-      //   message: 'Optional: Add React Extensions',
-      //   name: 'reactExtensions',
-      //   choices: [
-      //     {
-      //       name: 'COMING SOON, Add Flux architecture setup (Redux + Redux Dev Tools)',
-      //       value: 'redux',
-      //       disabled: true
-      //     },
-      //     {
-      //       name: 'COMING SOON, Add server with isomorphic rendering (Node + Express)',
-      //       value: 'server',
-      //       disabled: true
-      //     },
-      //     {
-      //       name: 'COMING SOON, Add isomorphic routing (Flatiron director)',
-      //       value: 'testing',
-      //       disabled: true
-      //     },
-      //     {
-      //       name: 'COMING SOON, Add style reset and theme (React inline styles)',
-      //       value: 'styles',
-      //       disabled: true
-      //     }
-      //   ]
-      // }
     ];
 
     this.prompt(prompts, function (props) {
@@ -199,10 +164,6 @@ module.exports = yeoman.generators.Base.extend({
         this.template('src/index-js/_index.ejs', 'src/index.js', this.context);
       }
 
-      if(projectType === 'react-component') {
-        this.template('src/Example-js/_Example.ejs', 'src/index.js', this.context);
-      }
-
       if(projectType === 'react-web-app') {
         this.template('src/Example-js/_Example.ejs', 'src/components/Example/Example.js', this.context);
       }
@@ -211,10 +172,6 @@ module.exports = yeoman.generators.Base.extend({
 
         if(projectType === 'js-module') {
           this.template('src/index-test-js/_index.test.ejs', 'src/index.test.js', this.context);
-        }
-
-        if(projectType === 'react-component') {
-          this.template('src/Example-test-js/_Example.test.ejs', 'src/index.test.js', this.context);
         }
 
         if(projectType === 'react-web-app') {

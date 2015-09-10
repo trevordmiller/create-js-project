@@ -1,12 +1,14 @@
-<!DOCTYPE html>
+export const reactWebAppMock =
+`<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
-    <title><%= projectName %></title>
-    <meta name="description" content="<%= projectDescription %>">
+    <title>project-name</title>
+    <meta name="description" content="About the project">
   </head>
   <body>
     <section id="app"></section>
   </body>
   <script src="bundle.js"></script>
 </html>
+`;

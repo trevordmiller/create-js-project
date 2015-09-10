@@ -2,8 +2,8 @@
 
 <%_if (continuousIntegration) { _%>
 [![Build Status](https://travis-ci.org/<%= githubUsername %>/<%= projectName %>.svg?branch=master)](https://travis-ci.org/<%= githubUsername %>/<%= projectName %>)
-<%_ } _%>
 
+<%_ } _%>
 <%= projectDescription %>
 
 ---
@@ -14,8 +14,9 @@
 1. Clone the project
 1. `npm install`
 1. `npm run dev`
+
 <%_ } _%>
-<%_if (projectType === 'js-module' || projectType === 'react-component') { _%>
+<%_if (projectType === 'js-module') { _%>
 ## Install
 
 `$ npm install <%= projectName %> --save`
@@ -33,6 +34,7 @@
 ## API
 
 ...
+
 <%_ } _%>
 ---
 

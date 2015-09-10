@@ -1,4 +1,4 @@
-export const lintingPromptOutput =
+export const lintingMock =
 `{
   "stage": 0,
   "plugins": [

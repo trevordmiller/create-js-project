@@ -1,12 +1,37 @@
-{
+export const jsModuleLintingMock =
+`{
   "extends": "eslint:recommended",
   "rules": {
     "indent": [2, 2],
     "quotes": [2, "single"],
     "linebreak-style": [2, "unix"],
     "semi": [2, "always"],
-    "no-console": 0<%if (projectType === 'react-web-app') { %>,<% } %>
-    <%_if (projectType === 'react-web-app') { _%>
+    "no-console": 0
+  },
+  "ecmaFeatures": {
+    "modules": true,
+    "experimentalObjectRestSpread": true
+  },
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": true,
+    "mocha": true
+  },
+  "plugins": [
+  ]
+}
+`;
+
+export const reactWebAppLintingMock =
+`{
+  "extends": "eslint:recommended",
+  "rules": {
+    "indent": [2, 2],
+    "quotes": [2, "single"],
+    "linebreak-style": [2, "unix"],
+    "semi": [2, "always"],
+    "no-console": 0,
     "react/jsx-boolean-value": 2,
     "react/jsx-closing-bracket-location": 2,
     "react/jsx-curly-spacing": 2,
@@ -29,13 +54,10 @@
     "react/self-closing-comp": 2,
     "react/sort-comp": 2,
     "react/wrap-multilines": 2
-    <%_ } _%>
   },
   "ecmaFeatures": {
     "modules": true,
-    <%_if (projectType === 'react-web-app') { _%>
     "jsx": true,
-    <%_ } _%>
     "experimentalObjectRestSpread": true
   },
   "env": {
@@ -45,8 +67,7 @@
     "mocha": true
   },
   "plugins": [
-    <%_if (projectType === 'react-web-app') { _%>
     "react"
-    <%_ } _%>
   ]
 }
+`;

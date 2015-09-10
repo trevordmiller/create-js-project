@@ -1,16 +1,14 @@
 import {assert} from 'yeoman-generator';
 import runTestGenerator from '../../run-test-generator.js';
-import {editorConfigMock} from './editorconfig.mock';
-const file = '.editorconfig';
+import {reactWebAppMock} from './index.mock';
+const file = 'index.html';
 
 describe(file, () => {
 
-  describe('Prompt values: editorConfig', () => {
+  describe('Prompt values: react-web-app', () => {
 
     runTestGenerator({
-      generalExtensions: [
-        'editorConfig'
-      ]
+      projectType: 'react-web-app'
     });
 
     it('should create the file', () => {
@@ -18,7 +16,7 @@ describe(file, () => {
     });
 
     it('should have correct file contents', () => {
-      assert.fileContent(file, editorConfigMock);
+      assert.fileContent(file, reactWebAppMock);
     });
   });
 });

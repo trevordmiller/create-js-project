@@ -1,4 +1,4 @@
-export const reactWebAppPromptOutput =
+export const reactWebAppMock =
 `{
   "stage": 0,
   "plugins": [

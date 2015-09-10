@@ -1,14 +1,13 @@
 import {assert} from 'yeoman-generator';
-import runWithPrompts from '../../run-with-prompts.js';
-import {lintingPromptOutput} from './eslintignore.mock';
+import runTestGenerator from '../../run-test-generator.js';
+import {lintingMock} from './eslintignore.mock';
 const file = '.eslintignore';
 
 describe(file, () => {
 
-  describe('Any project type with linting prompt choice', () => {
+  describe('Prompt values: linting', () => {
 
-    runWithPrompts({
-      projectType: 'js-module',
+    runTestGenerator({
       generalExtensions: [
         'linting'
       ]
@@ -19,7 +18,7 @@ describe(file, () => {
     });
 
     it('should have correct file contents', () => {
-      assert.fileContent(file, lintingPromptOutput);
+      assert.fileContent(file, lintingMock);
     });
   });
 });
