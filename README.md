@@ -1,3 +1,7 @@
+# [DEPRECATED]
+
+---
+
 ![Nexus Logo](logo.png)
 
 # generator-nexus [![Build Status](https://travis-ci.org/trevordmiller/generator-nexus.svg?branch=master)](https://travis-ci.org/trevordmiller/generator-nexus)
@@ -85,39 +89,9 @@ After you select your project type and complete the general info questions, _Nex
 - Adds a `.travis.yml` file to the root of your project
 - Adds a Travis CI badge to the top of your `README.md` based on your answers to the generator prompts
 
-##### Continuous Deployment (Heroku) _(coming soon)_
-
-_Required selections: Travis CI_
-
-- Updates `.travis.yml` file with Heroku information
-
 ### React Extensions
 
 If you selected a React project type, _Nexus_ asks if you want to extend the base React project setup with _React Extensions_:
-
-##### Isomorphic rendering _(coming soon)_
-
-- Sets up a Node server for rendering your React code on the server
-
-##### Isomorphic routing _(coming soon)_
-
-- Adds routing which can be used on both the server and client
-
-##### Styling _(coming soon)_
-
-- Adds some base style variables and theming using [React's inline styles](https://facebook.github.io/react/tips/inline-styles.html)
-
----
-
-## Roadmap
-
-- [ ] `v1.0.0` release
-- [ ] General Extension: continuous deployment option (Heroku)
-- [ ] React Extension: Flux option (Redux + Redux Dev Tools)
-- [ ] React Extension: isomorphic rendering option (Node server)
-- [ ] React Extension: isomorphic routing option (flatiron director)
-- [ ] React Extension: styling option (React inline styles)
-- [ ] After Node v4.0.0 is released, update `engine` in `package.json` to `4.0.0`, which will allow use of ES6 in `server.js` and `webpack.config.js`
 
 ---
 
